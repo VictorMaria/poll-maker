@@ -20,11 +20,13 @@ const PollValidation = {
             .isEmpty({ ignore_whitespace: true })
             .trim()
             .withMessage('Answer Type is required'),
-        check('questions.*.answers')
-            .custom((answers, { req }) => {
-                if (req.body.answerType === 'option' && answers && answers.length < 1 ) {
-                    throw new Error('Possible answers to the question are required');
-                }   
+        check('questions')
+            .custom((questions) => {
+                for (let question of questions) {
+                    if (question.answerType === 'option' && question.answers && question.answers.length < 1 ) {
+                            throw new Error('Possible answers to the question are required');
+                    }
+                } 
                 return true;
             }),
     ],
