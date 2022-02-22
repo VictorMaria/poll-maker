@@ -21,6 +21,7 @@ export const signUp = async (details) => {
     });
 
     const payload = {
+        id: newUser._id,
         firstName: newUser.firstName,
         lastName: newUser.lastName,
         email,
@@ -59,6 +60,7 @@ export const signIn = async (details) => {
         }
 
         const payload = {
+            id: user._id,
             firstName: user.firstName,
             lastName: user.lastName,
             email,
