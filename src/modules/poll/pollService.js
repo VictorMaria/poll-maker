@@ -48,7 +48,7 @@ export const getMany = async (userId) => {
 }
 
 export const getOneWithQuestions = async (userId, pollId) => {
-    const poll = await Poll.findOne({ userId, pollId });
+    const poll = await Poll.findOne({ userId, _id: pollId });
     const questions = await Question.find({ userId, pollId });
 
     return {
