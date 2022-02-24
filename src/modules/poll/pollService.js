@@ -48,6 +48,7 @@ export const getMany = async (userId) => {
 }
 
 export const getOneWithQuestions = async (userId, pollId) => {
+    const poll = await Poll.findOne({ userId, pollId });
     const questions = await Question.find({ userId, pollId });
 
     return {
@@ -55,6 +56,7 @@ export const getOneWithQuestions = async (userId, pollId) => {
         message: `${questions.length > 0 ? 'Questions fetched successfully' : 'No questions available'}`,
         data: {
             pollId,
+            pollName: poll.name,
             questions,
         },
     }
